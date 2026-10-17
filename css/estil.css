@@ -1,0 +1,1107 @@
+/* GENERAL: elimina espais i unifica estil per a tota la pàgina */
+* {
+    margin: 0; /* treu els marges per defecte dels navegadors */
+    padding: 0; /* elimina el padding per defecte */
+    box-sizing: border-box; /* fa que el padding no afecti la mida final dels elements */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* tipografia general de la web */
+}
+
+/* estil general del cos de la pàgina */
+body {
+    background-color: #000000; /* fons negre pel fons */
+    color: #ffffff;           /* text blanc per contrast */
+}
+
+/* contenidor principal del contingut */
+main {
+    max-width: 80%; /* limita l’amplada perquè no ocupi tota l'amplada */
+    margin: 0 auto; /* centra el contingut horitzontalment */
+    padding: 20px; /* espai intern perquè no quedi enganxat */
+    margin-top: 100px; /* separació de la part superior */
+}
+
+/* estil dels títols principals */
+h1 {
+    text-align: center; /* centra el títol */
+    margin-bottom: 70px; /* separació amb el contingut inferior */
+    color: #ffe066; /* groc per destacar el títol */
+}
+
+/* HEADER */
+
+header{
+    background-color: #1a1a1a; /* COLOR DE FONDO */
+    align-content: center; /* centrem verticalment*/
+    text-align: left; /* text aliniat a l'esquerra*/
+    position: fixed; /* fa que el header es quedi fix a dalt */
+    top: 0;        
+    left: 0;        
+    width: 100%;  /* ocupa el 100 per cent del ample de la pantalla */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* li afegim un petit sombrejat en la part inferior per que quedi millor i es diferenci mes del contingut */
+    z-index: 1000; /* fem que apareixi sempre per damunt de qualsevol altre elemnt */
+    padding: 15px 0; /*espaia intern amunt i abaix del contenidor */
+}
+
+header ul { /* en linia horitzontal els elements de la llista, centrats i que començin a l'esquerra*/
+    display: flex;   
+    align-items: center; 
+    justify-content: flex-start;
+    padding: 10px 20px;
+}
+
+header li { 
+    list-style: none; /* li terieml'estil i una mica de marge */
+    margin-right: 30px;
+}
+
+
+header img { /* indiquem la mesura de les imatges que ha de tenir*/
+    width: 50px;
+    height: auto;
+    display: block; 
+}
+
+header li a.enllaç {  /*els enllaços del header */
+    text-decoration: none;  /* Treure decoració*/
+    color: #ffe066;
+    font-weight: bold;
+    font-size:  20px; 
+
+    position: relative;
+    display: inline-block; /* es coloca com una linia pero ens permet fer l'escalat sense trecar la posicio que te*/
+    transition: color 0.3s ease, transform 0.3s ease;  /*trancicio de color  suau, indiquem que sigui progresiu el canvi */
+}
+
+header li a.enllaç:hover {  /*al pasar pel damunt canvia de color */
+    color: white;
+    transform: scale(1.1);/*fem petit efecte que es faci gran */
+}
+
+header li a.enllaç::after {
+    content: '';  /* linia que apareix inferiorment de cada enllaç, aquesta creix despres de fer hover i decreix una vegada que treiem el ratolí de manera progressiva*/
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background:  #ffe066;
+    border-radius: 5px;
+    transition: width 0.3s ease;  /*trancició de tamanys, crèixer suau */
+}
+
+header li a.enllaç:hover::after { /* quen fem hover, la linia que hem afegit de decoració, li indiquem que la seva llargada sigui tota l'amplada que ocupa*/
+    width: 100%;
+}
+
+/* per el menú hamburguesa, indiquem on vole que estigui situat i la seba mida */
+.hamburguesa{ 
+    display: none; /* per defecte amaguem el element */
+    font-size: 30px;
+    color: #ffe066;
+    padding-left: 20px;
+}
+
+/* Quan la pantalla sigui més petita que els píxels indicats, és a dir quan sigui en vista mòbil */
+@media screen and (max-width: 768px){
+    /* mostrar hamburguesa */
+    .hamburguesa{
+        display: block;
+    }
+
+    header ul{
+        display: none; /* Oculta el menú de navegació per defecte en versió mòbil */
+        flex-direction: column;  /* Organitza els elements del menú en columna */
+        align-items: center;  /* Centra els elements horitzontalment */
+        padding: 30px 0;
+        gap: 30px;  /* Separa els elements del menú entre si */
+    }
+
+    /* sols es mostra si esta actiu */
+    header ul.actiu{
+        display: flex; /* Quan el menú té la classe "actiu", es mostra com a flex i apareix a la pantalla */
+    }
+}
+
+/* HEADER FOOTER, en les pantalles de cookies, privades i termes hi ha com un doble header o un titul diferenciat*/
+.header {
+    background-color: #ffe066; 
+    color: #000000;          
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 4px solid #ffffff; /* borde inferior del contenidor */
+    width: 100vw; /* ocupa tot el ample de la pantalla*/
+    position: relative;
+    left: 50%;
+    /* li indiquem la posició exacta on volem que estigui, d'aquesta manera està centrat i ocupa el 100 per cent del width */
+    margin-top: -50px;
+    transform: translateX(-50%);
+}
+
+.header h1 { 
+    font-size: 48px;
+    letter-spacing: 4px;
+    text-transform: uppercase;/*indiquem que el text ha de ser en majúscules sempre*/
+    margin-bottom: 10px;
+}
+
+/*indiquem com han de ser els títuls*/
+.header h2 {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+/* FOOTER: estil general del peu de pàgina */
+footer {
+    background-color: #1a1a1a; /* fons fosc per diferenciar-lo del contingut */
+    text-align: center; /* tot el contingut centrat */
+    padding: 40px 20px; /* espai intern perquè no quedi atapeït */
+    margin-top: 80px; /* separació amb la part superior */
+    border-top: 1px solid #333; /* línia fina per separar visualment */
+}
+
+/* dins del footer, organitzem les seccions en fila */
+footer section {
+    display: flex; /* posa els elements en línia */
+    justify-content: center; /* els centra horitzontalment */
+    gap: 20px; /* espai entre elements */
+    margin-bottom: 20px; /* separació amb el que hi ha a sota */
+}
+
+/* estil general de les icones SVG */
+.icones svg {
+    width: 40px; /* mida base de les icones */
+    height: 40px;
+    fill: #ffe066; /* color groc per destacar */
+}
+
+/* icones dins del footer una mica més petites */
+footer .icones svg {
+    width: 25px;
+    height: 25px;
+}
+
+/* efecte quan passem el ratolí per sobre de les icones */
+.icones a:hover svg {
+    transform: scale(1.2); /* augmenta una mica la mida */
+    transition: transform 0.3s ease; /* animació suau */
+    fill: #ffffff; /* canvia a blanc en hover */
+}
+
+/* estil dels enllaços del footer */
+footer a {
+    color: #ffe066; /* mateix groc que les icones */
+    text-decoration: none; /* treu el subratllat */
+    font-size: 14px; /* mida petita i discreta */
+    transition: color 0.3s; /* canvi suau de color */
+}
+
+/* hover específic per icones: canvia color */
+.icones a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* text del footer (copyright, etc.) */
+footer p {
+    font-size: 13px; /* lleugerament més petit */
+    margin-top: 15px; /* separació amb el contingut de dalt */
+    color: #888; /* gris suau per no cridar massa l’atenció */
+}
+
+/* treiem subratllat als links de les icones */
+.icones a{
+    text-decoration: none;
+}
+
+/* hover general dels enllaços del footer */
+footer a:hover {
+    color: #ffffff; /* canvia a blanc quan hi passem el ratolí */
+}
+
+/* HOME (petits ajustos i efectes d’alguns elements) */
+
+/* imatges dels patrocinadors amb animació suau */
+.patrocinis img {
+    transition: transform 0.3s ease; /* fa que el zoom sigui suau */
+}
+
+/* efecte zoom quan passem el ratolí per sobre */
+.patrocinis img:hover {
+    transform: scale(1.2); /* augmenta una mica la imatge */
+}
+
+/* per quan fem scroll a seccions internes */
+#dates, #sponsors {
+    scroll-margin-top: 100px;
+}
+
+/* títol principal de la home */
+.home h1{
+    margin-top: 50px; /* separa el títol del top de la pàgina */
+}
+
+/* HOME BANNER */
+.banner {
+    margin-top: -20px;
+    position: relative; 
+    height: 90dvh;
+    overflow: hidden;
+    display: flex; 
+    justify-content: center; /* centrat horitzontal */
+    align-items: center; /* centrat vertical */
+    /*ocupa tot el ample de la pantalla, li indiquem on ha d'estar situat amb el translate*/
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Quan la pantalla sigui més petita que els píxels indicats, és a dir quan sigui en vista mòbil */
+@media screen and (max-width: 768px){
+    .banner{
+        height: 30dvh; /* Quan la pantalla sigui més petita que els píxels indicats, és a dir quan sigui en vista mòbil */
+    }
+}
+
+.slider{
+    width: 100%;
+    height: 100%;
+    margin: auto ;
+    overflow: hidden;  /* una imatge damunt de l'altra */
+    position: absolute;
+    
+}
+
+.slider ul{
+    display: flex;/* un al costat de l'altre*/
+    padding: 0; /*imatges juntes*/
+    margin: 0;
+    width: 500%; /*100 per cada imatge*/ 
+    animation: slide 20s infinite ease; /* animació que dura 20 segons i fa que aquesta sigui infinita*/
+    animation-direction: alternate; /*el slider una vegada que arriba al final torna cap al darrere*/
+}
+/* a cada imatge li indiquem que ha de tenir el seu màxim d'ample i que la llista no té decoració */
+.slider li {
+    width: 100%;
+    list-style: none;
+}
+/* la imatge del slider també tindrà el 110 per cent de width*/
+.slider img {
+    width: 100%;
+    display: block;
+}
+
+/* 5% DE 20 S = 1S, 100% = 20S, CADA IMATGE son una mica més de 3 segons. Fem que en un 16% del temps es mostri una imatge, es canvi o fagi l'animació de canvi en un segon i després és mostri l'altra imatge canviant en el width */
+@keyframes slide {
+    0% {
+        margin-left: 0%
+    }
+    16% {
+        margin-left: 0%
+    }
+
+    21% {
+        margin-left: -100%
+    }
+    37% {
+        margin-left: -100%
+    }
+
+    42% {
+        margin-left: -200%
+    }
+    58% {
+        margin-left: -200%
+    }
+
+    63% {
+        margin-left: -300%
+    }
+    79% {
+        margin-left: -300%
+    }
+
+    84% {
+        margin-left: -400%
+    }
+    100% {
+        margin-left: -400%
+    }
+    
+} 
+
+/*contenidor que va per damunt del banner*/
+.benvinguda {
+    background-color: rgba(0, 0, 0, 0.5); /*el color sera translucit, no opac*/
+    color: white;
+    text-align: center; /*text centrat*/
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 50px;
+    width: 60%; /*indiquem que ocupara un 60% del ample*/
+    z-index: 2; /*indiquem que el índex és 2, és a dir superior, d'aquesta manera es mostrarà per damunt de qualsevol altre element que tingui un índex més baix, que per defecte tots els elements el tenen.*/
+}
+
+/*canviem l'estil del títul que serà diferent a la resta, fem que el tamany del text sigui responsive i es un percentatge segons el tamanys de la pantalla*/
+.benvinguda h1 {
+    font-size: 3.5vw;
+    color: #ffe066;
+    margin-bottom: 10px;
+}
+
+/*canviem l'estil del text que serà diferent a la resta, fem que el tamany del text sigui responsive i es un percentatge segons el tamanys de la pantalla*/
+.benvinguda p {
+    font-size: 1.2vw;
+    margin-bottom: 45px;
+}
+
+/* BOTONS: estil general de tots els botons */
+button {
+    background: #ffe066; /* color groc principal */
+    color: black; /* text negre */
+    padding: 12px 25px;
+    text-decoration: none; /* treiem subratllats */
+    border-radius: 5px; /* cantonades lleugerament arrodonides */
+    font-weight: bold; /* text més visible */
+    border-color: #ffe066;
+    margin-bottom: 50px; /* separació amb altres elements */
+    transition: transform 0.3s ease; /* animació suau */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* efecte d'ombra */
+}
+
+/* efecte quan passem el ratolí per sobre del botó */
+button:hover {
+    background: #fff5d0; /* color més clar per a que es vegi la diferència */
+    transform: scale(1.2); /* augmenta la mida del botó */
+    cursor: pointer; /* mostra el cursor de clic */
+}
+
+/* botó específic */
+#botonet:hover{
+    background: #fff5d0;
+    transform: scale(1.05); /* és fa una mica menys gran que el general */
+}
+
+/* efecte quan fem clic al botó */
+button:active, #botonet:active {
+    transform: scale(0.95); /* es fa més petit per simular que aprete'm */
+}
+
+/* coloquem el contenidor on hi ha el boto de contacte al home centrat al mig */
+.contactans{
+    display: flex;
+    justify-content: center;
+}
+
+/* HOME DATES */
+.dates{
+    display: flex; /* converteix el contenidor en elements de fila */
+    justify-content: center; /* centra els elements horitzontalment */
+    align-items: center;  /* centra els elements verticalment */
+    gap: 100px;  /* separacio entre columnes */
+    flex-wrap: wrap; /* permet que els elements baixin a una nova línia en pantalles petites */
+}
+
+/* indiquem el tamnay maxim que han de tenir la imatge */
+.dates img{
+    max-height:400px;
+    width: auto;
+}
+
+/* indiquem el tamnay maxim que han de tenir el text */
+.dates p{
+    max-width:500px;
+}
+
+ /* TAULA QUE ÉS TROBA EN HOME */
+ .table-container {
+    overflow-x: auto; /* fa que amb resolució de pantalles petites es pugui fer scroll en només la taula, per visualitzar el contingut d'aquesta*/
+    width: 100%;
+}
+
+
+table.horari {
+    overflow-x: auto;
+    width: 100%;
+    text-align: center; /* centrem el text dins de cada cel·la */
+    margin: 0 auto; /* la centrem horitzontalment */
+    border: 3px solid #ffe066; /* contorn groc per destacar la taula */
+}
+
+/* estil general de les cel·les */
+table.horari th, table.horari td {
+    border: 1px solid #282828; /* línies fines entre cel·les */
+    padding: 10px; /* espai intern */
+}
+
+/* capçaleres principals de la taula */
+table.horari th {
+    background-color: #ffe066; /* fons groc per destacar títols */
+    color: #000000; /* text negre per contrast */
+}
+
+/* files parelles amb un color */
+table.horari tr:nth-child(even) {
+    background-color: #252424;
+}
+
+/* files senars amb altre color */
+table.horari tr:nth-child(odd) {
+    background-color: #1a1a1a;
+}
+
+/* efecte quan passem el ratolí per sobre d’una fila */
+table.horari tr:hover {
+    background-color: #535353; /* ressalta la fila */
+    color: #ffe066; /* canvia el text a groc */
+}
+
+/* home - patrocinadors */
+/* aquesta part del css controla tota la secció dels patrocinadors a la pàgina principal */
+
+/* fila de patrocinadors */
+/* aquí fem servir flex per posar totes les targetes en una mateixa fila */
+/* també les centrem perquè quedin ben col·locades al mig de la pantalla */
+/* i fem que puguin baixar a una altra línia si no hi ha espai (responsive) */
+.fila {
+    display: flex; /* activem flexbox per ordenar els elements en fila */
+    justify-content: center; /* centrem els patrocinadors horitzontalment */
+    gap: 25px; /* deixem espai entre cada targeta perquè no estiguin enganxades */
+    flex-wrap: wrap; /* permet que les targetes saltin a una altra línia en pantalles petites */
+    margin-bottom: 30px; /* separació amb el que hi ha a sota */
+    width: 100%; /* ocupa tot l’ample disponible */
+    max-width: 960px; /* limitem l’ample perquè no s’estiri massa en pantalles grans */
+    margin-left: auto; /* centrem el bloc automàticament a l’esquerra */
+    margin-right: auto; /* centrem el bloc automàticament a la dreta */
+}
+
+/* cada targeta de patrocinador */
+/* aquí definim la mida fixa de cada card i activem el context 3d */
+.flipcard-patro {
+    width: 220px; /* amplada fixa de la targeta */
+    height: 180px; /* alçada fixa de la targeta */
+    perspective: 1200px; /* crea profunditat 3d perquè el gir sembli real */
+}
+
+/* part interior de la targeta */
+/* aquesta és la peça que realment gira quan fem hover */
+.flipcard-patro-inner {
+    position: relative; /* permet que les cares es posicionin una sobre l’altra */
+    width: 100%; /* ocupa tota la targeta */
+    height: 100%; /* ocupa tota l’alçada de la targeta */
+    transition: transform 0.8s ease; /* fa que el gir sigui suau i no instantani */
+    transform-style: preserve-3d; /* manté el efecte 3d durant la rotació */
+}
+
+/* efecte de gir quan passem el ratolí */
+/* quan l’usuari passa el ratolí per sobre, la targeta gira 180 graus */
+.flipcard-patro:hover .flipcard-patro-inner {
+    transform: rotateY(180deg); /* gira la targeta en l’eix vertical */
+}
+
+/* cares de la targeta */
+/* aquesta regla s’aplica tant a la part frontal com a la posterior */
+.flipcard-patro-front,
+.flipcard-patro-back {
+    position: absolute; /* les dues cares ocupen exactament el mateix espai */
+    width: 100%; /* ocupen tota l’amplada */
+    height: 100%; /* ocupen tota l’alçada */
+    border-radius: 20px; /* cantonades arrodonides per un estil més modern */
+
+    backface-visibility: hidden; /* amaga la cara quan està girada */
+    -webkit-backface-visibility: hidden; /* compatibilitat amb alguns navegadors */
+
+    display: flex; /* fem servir flex per centrar el contingut */
+    flex-direction: column; /* col·loquem els elements en columna */
+    justify-content: center; /* centrem verticalment el contingut */
+    align-items: center; /* centrem horitzontalment el contingut */
+    padding: 20px; /* espai interior perquè no quedi enganxat */
+    box-sizing: border-box; /* evita que el padding augmenti la mida total */
+
+    background-color: #1a1a1a; /* color de fons fosc de la targeta */
+    border: 3px solid rgb(69, 69, 69); /* contorn gris per separar-la del fons */
+    transition: background-color 0.5s, border-color 0.5s; /* canvi suau de colors */
+
+    transform-style: preserve-3d; /* manté coherència del 3d dins la targeta */
+}
+
+/* efecte quan passem el ratolí */
+/* canvia el color de fons i el contorn per donar sensació d’interacció */
+.flipcard-patro:hover .flipcard-patro-front,
+.flipcard-patro:hover .flipcard-patro-back {
+    border-color: #ffe066; /* el contorn es torna groc */
+    background-color: #252525; /* el fons s’aclareix una mica */
+}
+
+/* imatge de la part frontal */
+/* ajustem la imatge perquè no es deformi */
+.flipcard-patro-front img {
+    max-width: 100%; /* la imatge no supera l’ample de la targeta */
+    height: auto; /* manté la proporció original */
+}
+
+/* part de darrere de la targeta */
+/* aquesta cara ja està girada perquè encaixi amb l’efecte de flip */
+.flipcard-patro-back {
+    transform: rotateY(180deg); /* la posem girada perquè després es vegi correctament */
+    text-align: center; /* centrem el text */
+}
+
+/* títol del patrocinador */
+.flipcard-patro-back h3 {
+    color: #ffe066; /* color groc per destacar el títol */
+    margin-bottom: 20px; /* separació amb el botó */
+    font-size: 22px; /* mida del text una mica més gran */
+}
+
+/* botó de la targeta */
+.flipcard-patro-back a {
+    text-decoration: none; /* traiem el subratllat del link */
+    background-color: #ffe066; /* color de fons del botó */
+    color: black; /* color del text */
+    padding: 10px 18px; /* espai interior del botó */
+    border-radius: 10px; /* botó amb cantonades arrodonides */
+    font-weight: bold; /* text més gruixut */
+    display: inline-block; /* permet aplicar transformacions correctament */
+
+    transition: all 0.4s ease-out; /* animació suau quan canvia d’estat */
+}
+
+/* efecte hover del botó */
+/* quan passem el ratolí, el botó creix una mica i canvia de color */
+.flipcard-patro-back a:hover {
+    background-color: #fff5d0; /* color més clar per indicar interacció */
+    transform: scale(1.08); /* el botó creix una mica per donar efecte visual */
+}
+
+/* REGISTRE I CONTACTE (Aquí arreglem la pàgina en general de registre i contacte, però sobretot ens ocupem del disseny dels formularis i del que han de fer.)   */
+/* Estil general per a totes les icones SVG (xarxes socials, etc.)
+   Ho fem per controlar la mida de totes les icones de manera uniforme */
+svg{
+    max-width: 50px; /* no deixem que les icones siguin massa grans */
+    color:white; /* intentem que les icones siguin visibles sobre fons fosc */
+    height:auto; /* mantenim proporcions correctes sense deformar-les */
+}
+
+/* Contenidor principal que agrupa el formulari i altres elements
+   L’usem per posar-ho tot en format columna/filera segons pantalla */
+.contenedor_principal{
+    display: flex; /* activem flexbox per poder ordenar elements fàcilment */
+    gap: 60px; /* deixem espai entre blocs perquè no estiguin enganxats */
+    justify-content: center; /* centrem tot el contingut horitzontalment */
+    align-items: flex-start; /* alineem els elements des de dalt */
+    flex-wrap: wrap; /* si no cap en pantalla petita, baixa a la següent línia */
+}
+
+/* Estil general del formulari
+   Ho fem en columna perquè cada camp vagi un sota l’altre */
+form {
+    display: flex;
+    flex-direction: column; /* força els inputs a anar en vertical */
+    gap: 25px; /* separació entre camps del formulari */
+}
+
+/* Estil de tots els inputs i textareas del formulari
+   Aquí controlem com es veuen els camps on l’usuari escriu */
+form input, form textarea {
+    padding: 10px; /* espai interior perquè el text no estigui enganxat */
+    font-size: 16px; /* mida de lletra còmoda per llegir i escriure */
+    border-radius: 5px; /* cantonades una mica arrodonides */
+    border: none; /* traiem l’estil per defecte del navegador */
+    outline: none; /* eliminem el contorn blau per poder-lo personalitzar */
+    border: 3px solid white; /* posem un marc blanc per defecte */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* fem que els canvis de color i ombra siguin suaus i no bruscos */
+
+    min-width: 200px; /* assegurem que el camp no sigui massa petit */
+}
+
+/* Quan l’usuari fa clic dins d’un camp (focus)
+   canviem el color per indicar visualment que està actiu */
+input:focus, textarea:focus {
+    border-color:#ffe066; /* color groc per destacar el camp actiu */
+    box-shadow: 0 0 4px #ffe066; /* petit efecte de llum al voltant */
+}
+
+/* Fem el textarea més alt perquè es pugui escriure text llarg còmodament */
+form textarea {
+    min-height: 120px; /* alçada mínima per missatges */
+}
+
+/* Caixes que contenen el formulari de registre i contacte
+   els donem un fons diferent per separar-los visualment */
+.registre , .contacte{
+    padding: 20px; /* espai interior perquè no estigui enganxat al marc */
+    background-color: rgba(255,255,255,0.1);
+    /* fons semi-transparent per destacar sense ser molt agressiu */
+
+    border-radius: 10px; /* cantonades arrodonides */
+}
+
+/* Caixa del registre
+   la limitem perquè no sigui massa ampla en pantalles grans */
+.registre{
+    max-width: 400px; /* amplada màxima controlada */
+    margin: auto; /* centrem la caixa a la pantalla */
+}
+
+/* Caixa del contacte
+   més ampla perquè normalment té més camps */
+.contacte{
+    width: 40%; /* ocupa un percentatge de pantalla */
+    max-width:40%; /* evitem que creixi massa */
+    margin: auto; /* centrat */
+    min-width: 290px; /* assegurem que en mòbil no es trenqui */
+}
+
+/* Separador visual entre parts del formulari */
+hr {
+    border: none; /* eliminem estil per defecte */
+    height: 1px; /* línia fina */
+    background-color: #fff5d0; /* color suau groguenc */
+    margin: 20px 0; /* espai dalt i baix */
+}
+
+/* Contenidor del mapa (Google Maps o similar)
+   el centrem i li donem espai */
+.mapa {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+
+/* Estil del mapa incrustat */
+.mapa iframe {
+    width: 100%; /* ocupa tot l’ample disponible */
+    height: 350px; /* alçada fixa perquè es vegi bé */
+    border: 0; /* eliminem marc del iframe */
+    border-radius: 10px; /* cantonades arrodonides */
+}
+
+/* Títols dins de la zona d’informació */
+.info h3{
+    margin-bottom: 20px; /* separació amb el text de sota */
+}
+
+/* Classe que afegim amb JavaScript quan hi ha error
+   serveix per marcar camps en vermell */
+.error{
+    border:3px solid red !important;
+    /* força el vermell encara que hi hagi altres estils */
+
+    box-shadow:0 0 5px red; /* efecte de ressalt visual */
+}
+
+/* Contenidor individual de cada camp del formulari */
+.camp{
+    position: relative; /* necessari per col·locar el label a dins */
+    width: 100%;
+}
+
+/* Estil dels inputs dins dels camps */
+.camp input{
+
+    width: 100%; /* ocupen tot l’espai disponible */
+
+    padding: 20px 10px 8px 10px;
+    /* espai especial perquè el text no xoqui amb el label */
+
+    font-size: 16px;
+
+    border-radius: 5px;
+
+    border: 3px solid white;
+
+    background-color: white;
+
+    color: black; /* text visible sobre fons blanc */
+}
+
+/* Estil del textarea dins del camp */
+.camp textarea{
+
+    width: 100%;
+
+    padding: 20px 10px 8px 10px;
+
+    font-size: 16px;
+
+    border-radius: 5px;
+
+    border: 3px solid white;
+
+    background-color: white;
+
+    color: black;
+
+    resize: vertical; /* només es pot ampliar verticalment */
+
+    min-height: 120px;
+
+    outline: none;
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Label flotant dins dels camps
+   està dins del input fins que l’usuari escriu */
+.camp label{
+
+    position: absolute;
+
+    left: 12px;
+
+    top: 50%; /* el col·loquem al centre verticalment */
+
+    transform: translateY(-50%);
+
+    color: gray;
+
+    transition: 0.3s ease; /* moviment suau quan puja */
+
+    pointer-events: none; /* evita que es pugui clicar el label */
+
+    font-size: 16px;
+}
+
+/* Quan el camp està actiu o té text escrit,
+   el label puja per deixar espai al text */
+.camp input:focus + label,
+.camp input:valid + label,
+.camp textarea:focus + label,
+.camp textarea:valid + label{
+
+    top: -10px; /* el pugem fora del camp */
+
+    left: 6px;
+
+    font-size: 14px; /* el fem més petit */
+
+    background-color: #1f1f1f; /* el "retallem" del fons */
+
+    padding: 0 5px;
+
+    color: #ffe066; /* color groc per destacar */
+}
+
+/* ========================= */
+/* TEXT LEGAL (PRIVADESA ETC) */
+/* ========================= */
+
+/* Títol principal dels textos legals */
+#titol {
+    color: black;
+}
+
+/* Subtítol del document legal */
+#subtitol{
+    color: black;
+}
+
+/* Separació entre blocs de text */
+.lletra section {
+    margin-bottom: 35px;
+}
+
+/* Separació especial per alguns paràgrafs */
+#parraf{
+    margin-top: 30px;
+}
+
+/* Títols dins dels textos legals */
+.lletra h3 {
+    color: #ffe066; /* groc per destacar apartats */
+    font-size: 24px;
+    margin-bottom: 15px;
+    border-left: 5px solid #ffe066; /* línia decorativa lateral */
+    padding-left: 15px;
+}
+
+/* Paràgrafs generals del text legal */
+.lletra p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #e0e0e0; /* gris clar per llegibilitat */
+}
+
+/* Text important dins del document */
+.lletra strong {
+    color: #ffffff; /* el fem més visible */
+}
+
+/* LLISTES DE APARTAT PRIVADESA*/
+
+/* treiem el punt per defecte i ajustem la llista */
+.llista ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+/* cada element de la llista amb espai i posició */
+.llista ul li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+/* personalitzem el punt de la llista amb un símbol groc */
+.llista ul li::before {
+    content: "✦";
+    color: #ffe066;
+    position: absolute;
+    left: 0;
+}
+
+/* això fa que sigui més responsive la pàgina */
+.faq_contenidors,
+.contenidors {
+    display: flex; /* organitza els blocs en fila */
+    flex-wrap: wrap; /* permet que baixin si no caben */
+    gap: 25px; /* espai entre elements */
+}
+
+/* FaQ: FLIPCARDS */
+.contenidors {
+    display: flex; /* posem les targetes en fila amb flexbox perquè s’organitzin automàticament */
+    flex-wrap: wrap; /* si no caben, baixen a la següent línia */
+    justify-content: center; /* les centrem horitzontalment a la pàgina */
+    gap: 30px; /* deixem espai entre targetes perquè no quedin enganxades */
+}
+
+/* targeta principal */
+.flipcard {
+    width: 320px; /* amplada fixa de la targeta */
+    height: 260px; /* alçada fixa perquè totes siguin iguals */
+    perspective: 1200px; /* crea efecte 3D quan fem el gir */
+}
+
+/* part interior que gira */
+.flipcard-inner {
+    position: relative; /* permet superposar la part davant i darrere */
+    width: 100%; /* ocupa tota la targeta */
+    height: 100%; /* ocupa tota l’alçada */
+
+    transform-style: preserve-3d; /* manté l’efecte 3D quan girem */
+
+    transition: transform 0.8s ease, box-shadow 0.5s ease; /* fa que el gir sigui suau i animat */
+}
+
+/* quan passem el ratolí, la targeta gira */
+.flipcard:hover .flipcard-inner {
+    transform: rotateY(180deg); /* gira la targeta 180 graus horitzontalment */
+}
+
+/* cares de la targeta (davant i darrere) */
+.flipcard-front,
+.flipcard-back {
+    position: absolute; /* les posem una sobre l’altra */
+    width: 100%; /* ocupen tota la targeta */
+    height: 100%;
+
+    border-radius: 18px; /* cantonades arrodonides */
+
+    padding: 25px; /* espai intern perquè el text no toqui les vores */
+
+    backface-visibility: hidden; /* amaga la cara quan està girada */
+
+    display: flex; /* centrem el contingut fàcilment */
+    flex-direction: column; /* elements en columna */
+    justify-content: center; /* centrat vertical */
+    align-items: center; /* centrat horitzontal */
+
+    border: 2px solid #ffe066; /* vora groga per destacar */
+    background-color: #1a1a1a; /* fons fosc */
+
+    box-shadow: 0 8px 18px rgba(0,0,0,0.4); /* ombra per donar profunditat */
+
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, transform 0.8s ease; /* animacions suaus */
+}
+
+/* efecte quan passem el ratolí per sobre */
+.flipcard:hover .flipcard-front,
+.flipcard:hover .flipcard-back {
+    background-color: #252525; /* canvia lleugerament el fons */
+    box-shadow: 0 10px 25px rgba(255,224,102,0.25); /* ombra groguenca més visible */
+}
+
+/* part del darrere ja està girada inicialment */
+.flipcard-back {
+    transform: rotateY(180deg); /* la cara del darrere comença girada */
+}
+
+/* títols dins de la targeta */
+.flipcard h3 {
+    color: #ffe066; /* color groc per destacar */
+    margin-bottom: 15px; /* separació amb el text */
+    text-align: center; /* centrem el text */
+    font-size: 22px; /* mida del títol */
+    transition: color 0.4s ease; /* canvi suau de color */
+}
+
+/* text dins de la targeta */
+.flipcard p {
+    color: #e0e0e0; /* gris clar per llegir bé */
+    text-align: center; /* centrat */
+    line-height: 1.6; /* espai entre línies perquè sigui més llegible */
+    font-size: 15px; /* mida del text */
+    transition: color 0.4s ease; /* canvi suau de color */
+}
+
+/* quan passem el ratolí, el títol es torna blanc */
+.flipcard:hover h3 {
+    color: white;
+}
+
+/* quan passem el ratolí, el text es torna més clar/groc suau */
+.flipcard:hover p {
+    color: #fff5d0;
+}
+
+/* POPUP D'ENTRADA A LA WEB */
+/* estil del popup (modal) que apareix quan entrem a la web o quan es reinicia */
+#popup{
+    display:none; /* per defecte està amagat fins que el mostrem amb javascript */
+    position:fixed; /* queda fix a la pantalla encara que fem scroll */
+    top:0; /* el situem a dalt del tot */
+    left:0; /* el situem a l’esquerra del tot */
+    width:100%; /* ocupa tota l’amplada de la pantalla */
+    height:100%; /* ocupa tota l’alçada de la pantalla */
+
+    background:rgba(0,0,0,0.75); /* fons fosc transparent per enfosquir la pàgina */
+
+    justify-content:center; /* centrem el contingut horitzontalment */
+    align-items:center; /* centrem el contingut verticalment */
+
+    z-index:9999; /* el posem per sobre de tota la pàgina */
+}
+
+/* contenidor del contingut del popup */
+.contenidorpop{
+    background-color:#1a1a1a; /* fons fosc del quadre del popup */
+    border:2px solid #ffe066; /* vora groga per destacar el popup */
+    border-radius:20px; /* cantonades arrodonides */
+    padding:40px; /* espai intern perquè el text no quedi enganxat */
+    text-align:center; /* centrem tot el text dins del popup */
+    max-width:500px; /* limitem l’amplada perquè no sigui massa gran */
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.7), /* ombra principal per donar profunditat */
+    0 0 20px rgba(255,224,102,0.2); /* lleugera llum groga decorativa */
+    animation: popupFade 0.5s ease; /* animació d’entrada suau */
+}
+
+/* títol del popup */
+.contenidorpop h2{
+    color:#ffe066; /* color groc per destacar el títol */
+    margin-bottom:20px; /* separació amb el text de sota */
+    font-size:32px; /* mida gran per cridar l’atenció */
+}
+
+/* text del popup */
+.contenidorpop p{
+    color:#e0e0e0; /* color gris clar per facilitar la lectura */
+    margin-bottom:30px; /* espai abans del botó */
+    line-height:1.6; /* espai entre línies perquè es llegeixi millor */
+}
+
+/* botó del popup */
+.contenidorpop button{
+    margin-bottom:0; /* evitem espai extra a sota del botó */
+}
+
+/* animació d’aparició del popup */
+@keyframes popupFade{
+    from{
+        opacity:0; /* comença invisible */
+        transform:scale(0.8); /* comença una mica més petit */
+    }
+    to{
+        opacity:1; /* acaba completament visible */
+        transform:scale(1); /* acaba amb mida normal */
+    }
+}
+
+
+/* quadrícula d'imatges */
+.galeria-grid{
+    display:grid; /* Converteix el contenidor en una quadrícula grid */
+    grid-template-columns: repeat(2, 1fr); /* indiquem que la quadrícula conte dos columnes iguals */
+    gap:30px; /* espai entre imatges */
+    margin-top:40px;
+}
+
+
+
+.imatge-clic{
+    overflow:hidden; /* s'amaga tot el que surti dels límits */
+    border-radius:20px; /* els bordes son rodons */
+    cursor:pointer; /* Mostra una mà quan es passa el ratolí per sobre, indicant que es pot clicar */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5); /* afegim una sombra per fer profunditat */
+}
+
+
+/* imatges de la quadricula */
+.imatge-clic img{
+    width:100%;
+    height:100%;
+    display:block;
+    transition: transform 0.5s ease, filter 0.5s ease;  /* Fa que els efectes de zoom i brillantor es facin de manera suau */
+}
+
+
+.imatge-clic:hover img{
+    transform:scale(1.08); /* Amplia lleugerament la imatge quan es passa el ratolí per sobre */
+    filter:brightness(1.1);  /* Augmenta una mica la brillantor de la imatge */
+}
+
+/**/
+#modal-galeria{
+    display:none; /* El modal està ocult per defecte */
+    position:fixed; 
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    z-index:99999; /* Situa el modal per sobre de qualsevol altre element de la pàgina */
+}
+
+
+/* indiquem la mida que tindra la imatge al ser ampliada i visualitzar-se en gran */
+#imgatge-zoom{
+    max-width:85%;
+    max-height:85%;
+    border-radius:10px; /* els bordes son rodons */
+    box-shadow: 0 0 30px rgba(255,224,102,0.3); /* afegim una sombra per fer profunditat */
+}
+
+
+/* boto de tancar, indiquem el color, mida i colocació */
+#creueta{
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    font-size:50px;
+    color:#ffe066;
+    cursor:pointer; /* Quan l'usuari passa el ratolí per sobre, el cursor canvia a una mà,
+       indicant que es pot clicar */
+    transition:transform 0.3s ease; /* fa que la trasformacio el canvi de color sigui suau */
+}
+
+/* al fer hover a la creueta fa un efecte d'ampliar-se i canvia de color */
+#creueta:hover{
+    transform:scale(1.2);
+    color:white;
+}
+
+
+#galeria-slider{
+    overflow:hidden;  /* Oculta qualsevol contingut que surti dels límits dels costats.*/
+    position:relative;
+}
+
+/* quan apareixi el missatge d'error que el text sigui de colo roig */
+.missatge-error{
+    color: red;
+}
